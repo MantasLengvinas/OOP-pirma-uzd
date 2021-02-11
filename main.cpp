@@ -1,22 +1,28 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
-void greetingMessage(string name);
+void greetingMessage(string name, int lines);
 
 int main(){
 
-    string vardas;
-    cin>>vardas;
+    string name;
+    int lines;
 
-    greetingMessage(vardas);
+    cout << "Iveskite savo varda: "; cin >> name;
+    cout << '\n';
+    cout << "Iveskite korteles ploti: "; cin >> lines;
+    cout << '\n';
+
+    greetingMessage(name, lines);
 
     return 0;
 }
 
-string createGreeting(string name){
+string createGreetingText(string name){
 
     if(name[name.length()-1] == 'a' || name[name.length()-1] == 'e'){
         return "Sveika, " + name + "!";
@@ -26,15 +32,27 @@ string createGreeting(string name){
 
 }
 
-void greetingMessage(string name){
+void greetingMessage(string name, int lines){
 
-    string greeting = createGreeting(name);
+    string greeting = createGreetingText(name);
+    vector<string> message;
 
-    string first(greeting.length()+4, '*'); // +4, nes is abieju pusiu reikalingos zvaigzdutes ir tarpai
-    string second("* " + string(greeting.length(), ' ') + " *");
-    string third("* " + greeting + " *");
-    string fourth("* " + string(greeting.length(), ' ') + " *");
-    string fifth(greeting.length()+4, '*');
+    message.push_back(string(greeting.length() + 4, '*')); //Pirma eilute
 
-    cout << first << '\n' << second << '\n' << third << '\n' << fourth << '\n' << fifth;
+    for(int i = 1; i < lines / 2; i++){ //Uzpildymas tarpais
+        message.push_back(string("* " + string(greeting.length(), ' ') + " *"));
+    }
+
+    message.push_back(string("* " + greeting + " *")); //Pasveikinimas
+
+    for(int i = lines / 2; i < lines - 2; i++){ //Uzpildymas tarpais
+        message.push_back(string("* " + string(greeting.length(), ' ') + " *"));
+    }
+
+    message.push_back(string(greeting.length() + 4, '*')); //Paskutine eilute
+    
+    //Isvedimas i ekrana
+    for(string eil : message){
+        cout << eil << '\n';
+    }
 }
