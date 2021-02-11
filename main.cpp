@@ -20,7 +20,7 @@ void GreetingMessage(string name){
 
     string greeting = "Sveikas, " + name + "!";
 
-    string first(greeting.length()+4, '*');
+    string first(greeting.length()+4, '*'); // +4, nes is abieju pusiu reikalingos zvaigzdutes ir tarpai
     string second("* " + string(greeting.length(), ' ') + " *");
     string third("* " + greeting + " *");
     string fourth("* " + string(greeting.length(), ' ') + " *");
