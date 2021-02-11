@@ -14,8 +14,11 @@ int main(){
 
     cout << "Iveskite savo varda: "; cin >> name;
     cout << '\n';
-    cout << "Iveskite korteles ploti: "; cin >> lines;
-    cout << '\n';
+    cout << "Iveskite korteles ploti (max: 100): "; cin >> lines; cout << '\n';
+    if(lines > 100){
+        cout << "Ivedete per dideli eiluciu skaiciu!";
+        exit(1);
+    }
 
     greetingMessage(name, lines);
 
