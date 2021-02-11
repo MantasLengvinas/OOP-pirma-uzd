@@ -4,21 +4,31 @@
 
 using namespace std;
 
-void GreetingMessage(string name);
+void greetingMessage(string name);
 
 int main(){
 
     string vardas;
     cin>>vardas;
 
-    GreetingMessage(vardas);
+    greetingMessage(vardas);
 
     return 0;
 }
 
-void GreetingMessage(string name){
+string createGreeting(string name){
 
-    string greeting = "Sveikas, " + name + "!";
+    if(name[name.length()-1] == 'a' || name[name.length()-1] == 'e'){
+        return "Sveika, " + name + "!";
+    }
+
+    return "Sveikas, " + name + "!";
+
+}
+
+void greetingMessage(string name){
+
+    string greeting = createGreeting(name);
 
     string first(greeting.length()+4, '*'); // +4, nes is abieju pusiu reikalingos zvaigzdutes ir tarpai
     string second("* " + string(greeting.length(), ' ') + " *");
